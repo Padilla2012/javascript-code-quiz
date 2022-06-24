@@ -20,9 +20,9 @@ var questions = [
 var score = 0;
 var questionIndex = 0;
 
-var currentTime = document.querySelector("#currentTime");
-var timer = document.querySelector("#startTime");
-var questionsDiv = document.querySelector("#questionsDiv");
+var currentTime = document.querySelector("#current-time");
+var timer = document.querySelector("#start-time");
+var questionsDiv = document.querySelector("#questions");
 var wrapper = document.querySelector("#wrapper");
 
 var secondsLeft = 50;
@@ -30,7 +30,7 @@ var holdInterval = 0;
 var penalty = 5;
 var ulCreate = document.createElement("ul");
 
-timer.addEventListener("click", function () {
+timer.addEventListener("click",function () {
     if (holdInterval === 0) {
         holdInterval = setInterval(function () {
             secondsLeft--;
@@ -43,15 +43,15 @@ timer.addEventListener("click", function () {
             }
         }, 1000);
     }
-    render(questionIndex);
+    render(question);
 });
 
-function render(questionIndex) {
-    questionsDiv.innerHTML = "";
+function render(question) {
+    questions.innerHTML = "";
     ulCreate.innerHTML = "";
     for (var i = 0; i < questions.length; i++) {
-        var userQuestion = questions[questionIndex].title;
-        var userChoices = questions[questionIndex].choices;
+        var userQuestion = questions[question].title;
+        var userChoices = questions[question].choices;
         questionsDiv.textContent = userQuestion;
     }
     userChoices.forEach(function (newItem) {
@@ -69,28 +69,28 @@ function compare(event) {
 
         var createDiv = document.createElement("div");
         createDiv.setAttribute("id", "createDiv");
-        if (element.textContent == questions[questionIndex].answer) {
+        if (element.textContent == questions[question].answer) {
             score++;
-            createDiv.textContent = "correct: " + questions[questionIndex].answer;
+            createDiv.textContent = "correct: " + questions[question].answer;
         } else {
             secondsLeft = secondsLeft - penalty;
-            createDiv.textContent = "wrong: " + questions[questionIndex].answer;
+            createDiv.textContent = "wrong: " + questions[question].answer;
         }
 
     }
     questionIndex++;
 
-    if (questionIndex >= questions.length) {
+    if (question>= questions.length) {
         allDone();
-        createDiv.textContent = "you are done" + " " + "You got" + score + "/" + questions.length + "correct";
+        createDiv.textContent = "you are done" + " " + "you have" + score + "/" + questions.length + "correct";
     } else {
-        render(questionIndex);
+        render(question);
     }
-    questionsDiv.appendChild(createDiv);
+    questions.appendChild(createDiv);
 
 }
 function allDone() {
-    questionsDiv.innerHTML = "";
+    questions.innerHTML = "";
     currentTime.innerHTML = "";
 
     var createH1 = document.createElement("h1");
