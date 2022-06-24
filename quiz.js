@@ -84,7 +84,7 @@ function compare(event) {
         allDone();
         createDiv.textContent = "you are done" + " " + "you have" + score + "/" + questions.length + "correct";
     } else {
-        render(question);
+        render(questionIndex);
     }
     questions.appendChild(createDiv);
 
