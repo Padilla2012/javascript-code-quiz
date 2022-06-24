@@ -49,9 +49,9 @@ timer.addEventListener("click",function () {
 function render(question) {
     questions.innerHTML = "";
     ulCreate.innerHTML = "";
-    for (var i = 0; i < questions.length; i++) {
-        var userQuestion = questions[question].title;
-        var userChoices = questions[question].choices;
+    for (var i = 0; i < questionsIndex.length; i++) {
+        var userQuestion = questions[questionIndex].title;
+        var userChoices = questions[questionIndex].choices;
         questionsDiv.textContent = userQuestion;
     }
     userChoices.forEach(function (newItem) {
@@ -71,16 +71,16 @@ function compare(event) {
         createDiv.setAttribute("id", "createDiv");
         if (element.textContent == questions[question].answer) {
             score++;
-            createDiv.textContent = "correct: " + questions[question].answer;
+            createDiv.textContent = "correct: " + questions[questionIndex].answer;
         } else {
             secondsLeft = secondsLeft - penalty;
-            createDiv.textContent = "wrong: " + questions[question].answer;
+            createDiv.textContent = "wrong: " + questions[questionIndex].answer;
         }
 
     }
     questionIndex++;
 
-    if (question>= questions.length) {
+    if (questionIndex>= questions.length) {
         allDone();
         createDiv.textContent = "you are done" + " " + "you have" + score + "/" + questions.length + "correct";
     } else {
@@ -90,7 +90,7 @@ function compare(event) {
 
 }
 function allDone() {
-    questions.innerHTML = "";
+    questionsIndex.innerHTML = "";
     currentTime.innerHTML = "";
 
     var createH1 = document.createElement("h1");
