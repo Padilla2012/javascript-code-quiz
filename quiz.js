@@ -41,13 +41,13 @@ timer.addEventListener("click",function () {
                 allDone();
                 currentTime.textContent = "time is up";
             }
-        }, 1000);
+        },1000);
     }
     render(question);
 });
 
 function render(questionIndex) {
-    questionsIndex.innerHTML = "";
+    questions.innerHTML = "";
     ulCreate.innerHTML = "";
     for (var i = 0; i < questionsIndex.length; i++) {
         var userQuestion = questions[questionIndex].title;
@@ -69,7 +69,7 @@ function compare(event) {
 
         var createDiv = document.createElement("div");
         createDiv.setAttribute("id", "createDiv");
-        if (element.textContent == questions[question].answer) {
+        if (element.textContent == questions[questionIndex].answer) {
             score++;
             createDiv.textContent = "correct: " + questions[questionIndex].answer;
         } else {
@@ -80,22 +80,22 @@ function compare(event) {
     }
     questionIndex++;
 
-    if (questionIndex>= questions.length) {
+    if (questionsIndex >= questions.length) {
         allDone();
         createDiv.textContent = "you are done" + " " + "you have" + score + "/" + questions.length + "correct";
     } else {
         render(questionIndex);
     }
-    questions.appendChild(createDiv);
+    questionsDiv.appendChild(createDiv);
 
 }
 function allDone() {
-    questionsDiv.innerHTML = "";
+    questions.innerHTML = "";
     currentTime.innerHTML = "";
 
     var createH1 = document.createElement("h1");
     createH1.setAttribute("id", "createH1");
-    createH1.textContent = "finish"
+    createH1.textContent = "You are Finish"
 
     questionsDiv.appendChild(createH1);
 
