@@ -20,8 +20,8 @@ var questions = [
 var score = 0;
 var questionIndex = 0;
 
-var currentTime = document.querySelector("#current-time");
-var timer = document.querySelector("#start-time");
+var currentTime = document.querySelector("#currentTime");
+var timer = document.querySelector("#startTime");
 var questionsDiv = document.querySelector("#questions");
 var wrapper = document.querySelector("#wrapper");
 
@@ -39,15 +39,15 @@ timer.addEventListener("click",function () {
             if (secondsLeft <= 0) {
                 clearInterval(holdInterval);
                 allDone();
-                currentTime.textContent = "time is up!";
+                currentTime.textContent = "time is up";
             }
         }, 1000);
     }
     render(question);
 });
 
-function render(question) {
-    questions.innerHTML = "";
+function render(questionIndex) {
+    questionsIndex.innerHTML = "";
     ulCreate.innerHTML = "";
     for (var i = 0; i < questionsIndex.length; i++) {
         var userQuestion = questions[questionIndex].title;
@@ -90,7 +90,7 @@ function compare(event) {
 
 }
 function allDone() {
-    questionsIndex.innerHTML = "";
+    questionsDiv.innerHTML = "";
     currentTime.innerHTML = "";
 
     var createH1 = document.createElement("h1");
