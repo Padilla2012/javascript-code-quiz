@@ -1,5 +1,5 @@
  // Questions about javascript
-var questionsIndex= [
+var questions = [
     {
         title: "Javascript is a_____ language.",
         choices: ["object-oriented", "object-base", "procedural", "none of the above"],
@@ -22,7 +22,7 @@ var questionIndex = 0;
 
 var currentTime = document.querySelector("#currentTime");
 var timer = document.querySelector("#startTime");
-var questionsIndex = document.querySelector("#questions");
+var questionsDiv = document.querySelector("#questionsDiv");
 var wrapper = document.querySelector("#wrapper");
 
 var secondsLeft = 50;
@@ -43,15 +43,15 @@ timer.addEventListener("click",function () {
             }
         },1000);
     }
-    render(questionsIndex);
+    render(questionIndex);
 });
 
-function render(questionsIndex) {
+function render(questionIndex) {
     questionsIndex.innerHTML = "";
     ulCreate.innerHTML = "";
-    for (var i = 0; i < questionsIndex.length; i++) {
-        var userQuestion =questionsIndex[questionsIndex].title;
-        var userChoices = questionsIndex[questionsIndex].choices;
+    for (var i = 0; i < question.length; i++) {
+        var userQuestion =questions[questionIndex].title;
+        var userChoices = questions[questionIndex].choices;
         questionsDiv.textContent = userQuestion;
     }
     userChoices.forEach(function (newItem) {
@@ -69,18 +69,18 @@ function compare(event) {
 
         var createDiv = document.createElement("div");
         createDiv.setAttribute("id", "createDiv");
-        if (element.textContent == questions[questionsIndex].answer) {
+        if (element.textContent == questions[questionIndex].answer) {
             score++;
-            createDiv.textContent = "correct: " + questions[questionsIndex].answer;
+            createDiv.textContent = "correct: " + questions[questionIndex].answer;
         } else {
             secondsLeft = secondsLeft - penalty;
-            createDiv.textContent = "wrong: " + questions[questionsIndex].answer;
+            createDiv.textContent = "wrong: " + questions[questionIndex].answer;
         }
 
     }
     questionIndex++;
 
-    if (questionsIndex >= questions.length) {
+    if (questionIndex >= questions.length) {
         allDone();
         createDiv.textContent = "you are done" + " " + "you have" + score + "/" + questions.length + "correct";
     } else {
@@ -90,7 +90,7 @@ function compare(event) {
 
 }
 function allDone() {
-    questions.innerHTML = "";
+    questionsDiv.innerHTML = "";
     currentTime.innerHTML = "";
 
     var createH1 = document.createElement("h1");
@@ -154,7 +154,7 @@ function allDone() {
             }
             allScores.push(finalScore);
             var newScore = JSON.stringify(allScores);
-            localStorage.setItem("scores", newScore);
+            localStorage.setItem("allscores", newScore);
             window.location.replace("./scores.html");
         }
     });
