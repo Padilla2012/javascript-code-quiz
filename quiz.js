@@ -22,7 +22,7 @@ var questionIndex = 0;
 
 var currentTime = document.querySelector("#currentTime");
 var timer = document.querySelector("#startTime");
-var questionsDiv = document.querySelector("#questions");
+var questionsIndex = document.querySelector("#questions");
 var wrapper = document.querySelector("#wrapper");
 
 var secondsLeft = 50;
@@ -43,15 +43,15 @@ timer.addEventListener("click",function () {
             }
         },1000);
     }
-    render(question);
+    render(questionIndex);
 });
 
 function render(questionIndex) {
     questions.innerHTML = "";
     ulCreate.innerHTML = "";
     for (var i = 0; i < questionsIndex.length; i++) {
-        var userQuestion = questions[questionIndex].title;
-        var userChoices = questions[questionIndex].choices;
+        var userQuestion = questionsIndex[question].title;
+        var userChoices = questionsIndex[question].choices;
         questionsDiv.textContent = userQuestion;
     }
     userChoices.forEach(function (newItem) {
