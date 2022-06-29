@@ -1,5 +1,5 @@
  // Questions about javascript
-var questions = [
+var questionsIndex= [
     {
         title: "Javascript is a_____ language.",
         choices: ["object-oriented", "object-base", "procedural", "none of the above"],
@@ -43,15 +43,15 @@ timer.addEventListener("click",function () {
             }
         },1000);
     }
-    render(questionIndex);
+    render(questionsIndex);
 });
 
-function render(questionIndex) {
-    questions.innerHTML = "";
+function render(questionsIndex) {
+    questionsIndex.innerHTML = "";
     ulCreate.innerHTML = "";
     for (var i = 0; i < questionsIndex.length; i++) {
-        var userQuestion = questionsIndex[question].title;
-        var userChoices = questionsIndex[question].choices;
+        var userQuestion =questionsIndex[questionsIndex].title;
+        var userChoices = questionsIndex[questionsIndex].choices;
         questionsDiv.textContent = userQuestion;
     }
     userChoices.forEach(function (newItem) {
@@ -69,12 +69,12 @@ function compare(event) {
 
         var createDiv = document.createElement("div");
         createDiv.setAttribute("id", "createDiv");
-        if (element.textContent == questions[questionIndex].answer) {
+        if (element.textContent == questions[questionsIndex].answer) {
             score++;
-            createDiv.textContent = "correct: " + questions[questionIndex].answer;
+            createDiv.textContent = "correct: " + questions[questionsIndex].answer;
         } else {
             secondsLeft = secondsLeft - penalty;
-            createDiv.textContent = "wrong: " + questions[questionIndex].answer;
+            createDiv.textContent = "wrong: " + questions[questionsIndex].answer;
         }
 
     }
