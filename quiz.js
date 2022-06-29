@@ -31,6 +31,7 @@ var penalty = 5;
 var ulCreate = document.createElement("ul");
 
 timer.addEventListener("click",function () {
+
     if (holdInterval === 0) {
         holdInterval = setInterval(function () {
             secondsLeft--;
@@ -47,14 +48,19 @@ timer.addEventListener("click",function () {
 });
 
 function render(questionIndex) {
+
     questionsIndex.innerHTML = "";
+
     ulCreate.innerHTML = "";
+
     for (var i = 0; i < question.length; i++) {
+        
         var userQuestion =questions[questionIndex].title;
         var userChoices = questions[questionIndex].choices;
         questionsDiv.textContent = userQuestion;
     }
     userChoices.forEach(function (newItem) {
+
         var listItem = document.createElement("li");
         listItem.textContent = newItem;
         questionsDiv.appendChild(ulCreate);
@@ -63,6 +69,7 @@ function render(questionIndex) {
     })
 }
 function compare(event) {
+
     var element = event.target;
 
     if (element.matches("li")) {
@@ -82,7 +89,7 @@ function compare(event) {
 
     if (questionIndex >= questions.length) {
         allDone();
-        createDiv.textContent = "you are done" + " " + "you have" + score + "/" + questions.length + "correct";
+        createDiv.textContent = "You are Done" + " " + "you have" + score + "/" + questions.length + "correct";
     } else {
         render(questionIndex);
     }
@@ -90,12 +97,13 @@ function compare(event) {
 
 }
 function allDone() {
+
     questionsDiv.innerHTML = "";
     currentTime.innerHTML = "";
 
     var createH1 = document.createElement("h1");
     createH1.setAttribute("id", "createH1");
-    createH1.textContent = "You are Finish"
+    createH1.textContent = "You are Done"
 
     questionsDiv.appendChild(createH1);
 
@@ -154,7 +162,7 @@ function allDone() {
             }
             allScores.push(finalScore);
             var newScore = JSON.stringify(allScores);
-            localStorage.setItem("allscores", newScore);
+            localStorage.setItem("scores", newScore);
             window.location.replace("./scores.html");
         }
     });
