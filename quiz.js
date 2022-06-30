@@ -17,6 +17,7 @@ var questions = [
     },
 
 ];
+
 var score = 0;
 var questionIndex = 0;
 
@@ -54,17 +55,18 @@ function render(questionIndex) {
     ulCreate.innerHTML = "";
 
     for (var i = 0; i < question.length; i++) {
-        
+
         var userQuestion =questions[questionIndex].title;
         var userChoices = questions[questionIndex].choices;
         questionsDiv.textContent = userQuestion;
     }
     userChoices.forEach(function (newItem) {
 
-        var listItem = document.createElement("li");
+        var listItem = document.createElement("Ul");
         listItem.textContent = newItem;
         questionsDiv.appendChild(ulCreate);
         ulCreate.appendChild(listItem);
+
         listItem.addEventListener("click", (compare));
     })
 }
@@ -76,9 +78,11 @@ function compare(event) {
 
         var createDiv = document.createElement("div");
         createDiv.setAttribute("id", "createDiv");
+
         if (element.textContent == questions[questionIndex].answer) {
             score++;
             createDiv.textContent = "correct: " + questions[questionIndex].answer;
+
         } else {
             secondsLeft = secondsLeft - penalty;
             createDiv.textContent = "wrong: " + questions[questionIndex].answer;
@@ -90,6 +94,7 @@ function compare(event) {
     if (questionIndex >= questions.length) {
         allDone();
         createDiv.textContent = "You are Done" + " " + "you have" + score + "/" + questions.length + "correct";
+
     } else {
         render(questionIndex);
     }
